@@ -5,6 +5,7 @@ import java.util.TimerTask;
 
 /** Класс - таймер. */
 public class GameTimer {
+    /** Основной метод - запуск таймера. */
     public static void StartTimer() {
         Timer timer = new Timer();
 
