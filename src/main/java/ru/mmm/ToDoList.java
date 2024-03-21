@@ -37,13 +37,6 @@ public class ToDoList {
     }
 
     /**
-     * Удаление задачи.
-     * @param taskText текст удаляемой задачи
-     */
-    public static void DeleteTask(String taskText){
-        tasks.remove(num);
-    }
-    /**
      * Отметка о выполнении задачи.
      * @param num порядковый номер выполненной задачи
      */
