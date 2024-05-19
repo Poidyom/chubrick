@@ -5,16 +5,15 @@ import lombok.NoArgsConstructor;
 
 /** Класс чубрика */
 @NoArgsConstructor
-@Getter
 public class Chubrick {
     /** Здоровье. */
     //@JsonProperty("id")
     //@CsvBindByName(column = "id")
-    private static int health;
+    @Getter private static int health;
     /** Сытость. */
-    private static int hunger;
+    @Getter private static int hunger;
     /** Скука. */
-    private static int boredom;
+    @Getter private static int boredom;
     /** Количество съеденного. */
     private static int amountOfEaten;
     /**
@@ -23,7 +22,7 @@ public class Chubrick {
      * @param _hunger стартовое значение сытости
      * @param _boredom стартовое значение скуки
      */
-    public static void SetСharacterParams(int _health, int _hunger, int _boredom) {
+    public static void SetCharacterParams(int _health, int _hunger, int _boredom) {
         health = _health;
         hunger = _hunger;
         boredom = _boredom;
@@ -43,7 +42,7 @@ public class Chubrick {
     public static boolean PlusEat(int value){
         if(amountOfEaten < 3){
             hunger += value;
-            if(hunger > 100) hunger = 100;
+            if(hunger > 150) hunger = 150;
             amountOfEaten++;
             return true;
         }
@@ -55,12 +54,12 @@ public class Chubrick {
      */
     public static void PlusBore(int value){
         boredom += value;
-        if(boredom > 100) boredom = 100;
+        if(boredom > 150) boredom = 150;
     }
     /** Сон. */
     public static void Sleep(){
         health += 10;   //сколько восстанавливает сон?
-        if(health > 100) health = 100;
+        if(health > 150) health = 150;
         resetFood();
     }
     /**
