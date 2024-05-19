@@ -16,6 +16,10 @@ public class Chubrick {
     @Getter private static int boredom;
     /** Количество съеденного. */
     private static int amountOfEaten;
+    /** Образ чубрика. */
+    @Getter private static String form;
+    /** Цвет чубрика. */
+    @Getter private static int color;
     /**
      * Задать стартовые параметры чубрика.
      * @param _health стартовое значение здоровья
@@ -58,8 +62,7 @@ public class Chubrick {
     }
     /** Сон. */
     public static void Sleep(){
-        health += 10;   //сколько восстанавливает сон?
-        if(health > 150) health = 150;
+        health = 150;
         resetFood();
     }
     /**
@@ -83,8 +86,10 @@ public class Chubrick {
      * @param value количество, на которое уменьшается здоровье
      */
     public static boolean MinusHealth(int value){
-        health -= value;
-        if(health <= 0) { health = 0; return true; }
+        if(hunger <= 0){
+            health -= value;
+            if(health <= 0) { health = 0; return true; }
+        }
         return false;
     }
 }

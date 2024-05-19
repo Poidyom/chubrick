@@ -34,10 +34,9 @@ public class App extends Application {
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
 
-                    // TODO: обновление health, food, happy, уже от самого чубрика
                     // Тут будет вызов тика на чубрике
                     // и обновление даных
-                    Chubrick.MinusHealth(1);
+                    Chubrick.MinusHealth(10); //если вернул true, то чел умер
                     Chubrick.MinusEat(4);
                     Chubrick.MinusBore(5);
 
