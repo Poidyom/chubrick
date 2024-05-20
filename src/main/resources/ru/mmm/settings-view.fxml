@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.SettingsController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+    <Button text="Цвет" fx:id="buttonOption1" onAction="#handleChangeColor"/>
+    <Button text="Option 2" fx:id="buttonOption2"/>
+    <Button text="Back to Main" fx:id="buttonBackToMain" onAction="#handleBackToMain"/>
+</VBox>
