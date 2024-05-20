@@ -8,71 +8,127 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import javafx.stage.WindowEvent;
 
 /** Класс - точка входа в приложение. */
 public class App extends Application {
-    //int health = 150;
-    //int food = 150;
-    //int happy = 150;
+    /** Главное окно. */
+    private Stage primaryStage;
 
-    MainController controller;
+    /** Главная сцена. */
+    private Scene mainScene;
 
+    /** Сцена настроек. */
+    private Scene settingsScene;
+
+    /** Контроллер главной сцены. */
+    private MainController mainController;
+
+    /** Контроллер сцены настроек. */
+    private SettingsController settingsController;
+
+    /** Старт приложения.
+     * @param primaryStage - главное окно. */
     @Override
     public void start(Stage primaryStage) throws Exception {
-        // Загрузка FXML-файла
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("main-view.fxml"));
-        Parent root = loader.load();
+        this.primaryStage = primaryStage;
 
-        // инициализация
-        controller = loader.getController();
-        controller.setApp(this);
+        // Загрузка основного окна
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("main-view.fxml"));
+        Parent mainRoot = mainLoader.load();
+        mainController = mainLoader.getController();
+        mainController.setApp(this);
+        mainScene = new Scene(mainRoot);
 
-        // TODO: тут нужно подгружать статы чубрика
+        // Загрузка окна настроек
+        FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
+        Parent settingsRoot = settingsLoader.load();
 
+        settingsController = settingsLoader.getController();
+        settingsController.setApp(this);
+        settingsScene = new Scene(settingsRoot);
+
+        // Инициализация параметров чубрика
+
+        // TODO: Тут должен быть вызов метода чубрика, который все загружает
         Chubrick.SetCharacterParams(150, 150, 150);
 
-        Timeline timeline = new Timeline(
+        // Таймлайн для еды
+        Timeline timelineFood = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
-
-                    // Тут будет вызов тика на чубрике
-                    // и обновление даных
-                    Chubrick.MinusHealth(10); //если вернул true, то чел умер
+                    if (Chubrick.MinusHealth(10)) {
+                        changeStateToDeath(); //TODO: обработка смерти
+                    }
                     Chubrick.MinusEat(4);
-                    Chubrick.MinusBore(5);
-
-                    // Обновление данных
-                    controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
+                    mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
                 })
         );
 
-        // Непрерывное выполнение анимации
-        timeline.setCycleCount(Timeline.INDEFINITE);
-        timeline.play();
+        // Таймлайн для скуки
+        Timeline timelineBore = new Timeline(
+                new KeyFrame(Duration.seconds(60), event -> {
+                    Chubrick.MinusBore(5);
+                    mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
+                })
+        );
 
-        // Создание сцены и установка корневого узла
-        Scene scene = new Scene(root);
+        timelineBore.setCycleCount(Timeline.INDEFINITE);
+        timelineBore.play();
 
-        // Установка сцены для primaryStage и отображение его
-        primaryStage.setScene(scene);
+        timelineFood.setCycleCount(Timeline.INDEFINITE);
+        timelineFood.play();
+
+        // Установка основной сцены и отображение
+        primaryStage.setScene(mainScene);
         primaryStage.setTitle("Чубрик");
         primaryStage.show();
+
+
+        // Установка обработки закрытия
+        primaryStage.setOnCloseRequest(event -> handleExit(event));
+    }
+
+    /** Поменять состояние при смерти. */
+    private void changeStateToDeath() {
+        //TODO: тут меняется картинка на гробик наверное.
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch(args); //todo!!!!! убрать? ХЗ зачем оно нужно
     }
 
+    /** Покормить чубрика. */
     public void feed() {
         System.out.println("Чубрик кушает");
         Chubrick.PlusEat(4);
-        controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
+        mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
     }
 
-    public void openSettings() {
-        System.out.println("Будут настройки");
+    /** Открыть сцену TO-DO списка. */
+    public void showToDoView() {
+        System.out.println("Будет туду"); //TODO: сделать сцену
+//        primaryStage.setScene(todoScene);
     }
 
-    public void openTODO() {
-        System.out.println("Будет туду");
+    /** Открыть сцену настроек. */
+    public void showSettingsView() {
+        primaryStage.setScene(settingsScene);
+    }
+
+    /** Открыть главную сцену. */
+    public void showMainView() {
+        primaryStage.setScene(mainScene);
+    }
+
+    /** Смена изображения чубрика */
+    public void changeChubrImage() {
+        mainController.setChubrImage("/ru/mmm/chubr_2_1.png"); //TODO: тут нужно передавать путь на файл с данных чубрика
+    }
+
+    /** Обработка выхода приложения.
+     * @param event - событие окна. */
+    private void handleExit(WindowEvent event) {
+        // TODO: вызов метода сохраения статы чубрика
+        System.out.println("Чубрик отключился");
     }
 }
