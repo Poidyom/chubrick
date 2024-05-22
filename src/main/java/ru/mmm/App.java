@@ -38,10 +38,10 @@ public class App extends Application {
                     // и обновление даных
                     Chubrick.MinusHealth(10); //если вернул true, то чел умер
                     Chubrick.MinusEat(4);
-                    Chubrick.MinusBore(5);
+                    Chubrick.MinusHappy(5);
 
                     // Обновление данных
-                    controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
+                    controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                 })
         );
 
@@ -65,7 +65,7 @@ public class App extends Application {
     public void feed() {
         System.out.println("Чубрик кушает");
         Chubrick.PlusEat(4);
-        controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getBoredom());
+        controller.setBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
     }
 
     public void openSettings() {

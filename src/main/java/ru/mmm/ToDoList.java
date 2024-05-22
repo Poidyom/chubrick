@@ -42,7 +42,7 @@ public class ToDoList {
      */
     public static void markAsCompleted(int num){
         System.out.println("Great success");
-        Chubrick.PlusBore(5);
+        Chubrick.PlusHappy(5);
         DeleteTask(num);
     }
 }

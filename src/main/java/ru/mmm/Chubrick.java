@@ -2,34 +2,35 @@ package ru.mmm;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /** Класс чубрика */
 @NoArgsConstructor
 public class Chubrick {
     /** Здоровье. */
-    //@JsonProperty("id")
-    //@CsvBindByName(column = "id")
     @Getter private static int health;
     /** Сытость. */
     @Getter private static int hunger;
     /** Скука. */
-    @Getter private static int boredom;
+    @Getter private static int happy;
     /** Количество съеденного. */
     private static int amountOfEaten;
     /** Образ чубрика. */
-    @Getter private static String form;
+    @Getter @Setter
+    private static String formName;
     /** Цвет чубрика. */
-    @Getter private static int color;
+    @Getter @Setter
+    private static int color;
     /**
      * Задать стартовые параметры чубрика.
      * @param _health стартовое значение здоровья
      * @param _hunger стартовое значение сытости
-     * @param _boredom стартовое значение скуки
+     * @param _happy стартовое значение скуки
      */
-    public static void SetCharacterParams(int _health, int _hunger, int _boredom) {
+    public static void SetCharacterParams(int _health, int _hunger, int _happy) {
         health = _health;
         hunger = _hunger;
-        boredom = _boredom;
+        happy = _happy;
         amountOfEaten = 0;
     }
 
@@ -56,9 +57,9 @@ public class Chubrick {
      * Увеличить скуку.
      * @param value добавляемое значение скуки
      */
-    public static void PlusBore(int value){
-        boredom += value;
-        if(boredom > 150) boredom = 150;
+    public static void PlusHappy(int value){
+        happy += value;
+        if(happy > 150) happy = 150;
     }
     /** Сон. */
     public static void Sleep(){
@@ -77,9 +78,9 @@ public class Chubrick {
      * Уменьшение скуки.
      * @param value количество, на которое уменьшается скука
      */
-    public static void MinusBore(int value){
-        boredom -= value;
-        if(boredom < 0) boredom = 0;
+    public static void MinusHappy(int value){
+        happy -= value;
+        if(happy < 0) happy = 0;
     }
     /**
      * Уменьшение здоровья.
@@ -91,5 +92,9 @@ public class Chubrick {
             if(health <= 0) { health = 0; return true; }
         }
         return false;
+    }
+
+    public static String GetPathToAppearance(){
+        return  "../../../resources/ru/mmm/appearances/" + formName + "_" + color;
     }
 }
