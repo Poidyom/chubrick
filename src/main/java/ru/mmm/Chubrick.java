@@ -27,11 +27,11 @@ public class Chubrick {
      * @param _hunger стартовое значение сытости
      * @param _happy стартовое значение скуки
      */
-    public static void SetCharacterParams(int _health, int _hunger, int _happy) {
+    public static void SetCharacterParams(int _health, int _hunger, int _happy, int _amountOfEaten) {
         health = _health;
         hunger = _hunger;
         happy = _happy;
-        amountOfEaten = 0;
+        amountOfEaten = _amountOfEaten;
     }
 
 
@@ -94,7 +94,8 @@ public class Chubrick {
         return false;
     }
 
+    /** Возврат пути до файла с изображением текущей конфигурации чубрика */
     public static String GetPathToAppearance(){
-        return  "../../../resources/ru/mmm/appearances/" + formName + "_" + color;
+        return  "..\\..\\..\\resources\\ru\\mmm\\appearances\\" + formName + "_" + color;
     }
 }

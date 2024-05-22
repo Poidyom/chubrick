@@ -29,7 +29,7 @@ public class App extends Application {
 
         // TODO: тут нужно подгружать статы чубрика
 
-        Chubrick.SetCharacterParams(150, 150, 150);
+        Chubrick.SetCharacterParams(150, 150, 150, 0);
 
         Timeline timeline = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {

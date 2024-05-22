@@ -1,11 +1,12 @@
 package ru.mmm;
 
+import lombok.Getter;
 import java.util.ArrayList;
 
 /** Класс - лист заданий. */
 public class ToDoList {
     /** Список заданий. */
-    private static ArrayList<String> tasks;
+    @Getter private static ArrayList<String> tasks;
     /** Задать пустой список заданий. */
     public static void SetToDoList() {
         tasks = new ArrayList<String>();
