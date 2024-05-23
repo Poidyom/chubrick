@@ -51,16 +51,22 @@ public class App extends Application {
         // Инициализация параметров чубрика
 
         // TODO: Тут должен быть вызов метода чубрика, который все загружает
-        Chubrick.SetCharacterParams(150, 150, 150, 0);
+        Chubrick.SetCharacterParams(1, 150, 150, 0);
+        Chubrick.setFormName("hare");
+        Chubrick.setState("base");
+        Chubrick.setColor(1);
+
+        loadChubrImage();
 
         // Таймлайн для еды
         Timeline timelineFood = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
                     if (Chubrick.MinusHealth(10)) {
-                        changeStateToDeath(); //TODO: обработка смерти
+
                     }
                     Chubrick.MinusEat(4);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
+                    loadChubrImage();
                 })
         );
 
@@ -69,6 +75,7 @@ public class App extends Application {
                 new KeyFrame(Duration.seconds(60), event -> {
                     Chubrick.MinusHappy(5);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
+                    loadChubrImage();
                 })
         );
 
@@ -82,6 +89,7 @@ public class App extends Application {
         primaryStage.setScene(mainScene);
         primaryStage.setTitle("Чубрик");
         primaryStage.show();
+        loadChubrImage();
 
 
         // Установка обработки закрытия
@@ -113,16 +121,23 @@ public class App extends Application {
     /** Открыть сцену настроек. */
     public void showSettingsView() {
         primaryStage.setScene(settingsScene);
+        loadChubrImage();
     }
 
     /** Открыть главную сцену. */
     public void showMainView() {
         primaryStage.setScene(mainScene);
+        loadChubrImage();
     }
 
-    /** Смена изображения чубрика */
-    public void changeChubrImage() {
-        mainController.setChubrImage("/ru/mmm/chubr_2_1.png"); //TODO: тут нужно передавать путь на файл с данных чубрика
+    /** Загрузка изображения чубрика */
+    public void loadChubrImage() {
+        String path = Chubrick.GetPathToAppearance();
+        if (primaryStage.getScene() == mainScene) {
+            mainController.setChubrImage(path);
+        } else if (primaryStage.getScene() == settingsScene) {
+            settingsController.setChubrImage(path);
+        }
     }
 
     /** Обработка выхода приложения.

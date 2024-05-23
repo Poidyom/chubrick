@@ -9,42 +9,56 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ru.mmm.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.MainController">
 
     <children>
-        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" VBox.vgrow="ALWAYS">
+        <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="626.0" prefWidth="704.0" styleClass="main-background" stylesheets="@style.css" VBox.vgrow="ALWAYS">
             <children>
-                <Button fx:id="todoButton" layoutX="537.0" layoutY="328.0" mnemonicParsing="false" text="СПИСОК" onAction="#handleOpenTODO"/>
-                <Button fx:id="foodButton" layoutX="54.0" layoutY="328.0" mnemonicParsing="false" text="КОРМ" onAction="#handleFeed"/>
-                <Button fx:id="settingsButton" layoutX="544.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleOpenSettings">
-                    <graphic>
-                        <ImageView fitHeight="31.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@settings.png" />
-                            </image>
-                        </ImageView>
-                    </graphic></Button>
-                <Rectangle fx:id="healthBar" arcHeight="5.0" arcWidth="5.0" fill="#1fff55" height="14.0" layoutX="21.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                <Rectangle fx:id="foodBar" arcHeight="5.0" arcWidth="5.0" fill="#1fdbff" height="14.0" layoutX="21.0" layoutY="51.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                <Rectangle fx:id="happyBar" arcHeight="5.0" arcWidth="5.0" fill="#efff1f" height="14.0" layoutX="21.0" layoutY="76.0" stroke="BLACK" strokeType="INSIDE" width="161.0" />
-                <Label alignment="CENTER" layoutX="189.0" layoutY="20.0" style="&#10;" text="ХП" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                <Button fx:id="todoButton" layoutX="537.0" layoutY="328.0" mnemonicParsing="false" onAction="#handleOpenTODO" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@interface/list_button.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="foodButton" layoutY="328.0" mnemonicParsing="false" onAction="#handleFeed" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@interface/feed_button.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Button fx:id="settingsButton" layoutX="564.0" layoutY="8.0" mnemonicParsing="false" onAction="#handleOpenSettings" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="105.0" fitWidth="116.0">
+                     <image>
+                        <Image url="@interface/settings_button.png" />
+                     </image>
+                  </ImageView>
+               </graphic></Button>
+                <Rectangle fx:id="healthBar" arcHeight="10.0" arcWidth="10.0" fill="#ba2432" height="20.0" layoutX="21.0" layoutY="27.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                <Rectangle fx:id="foodBar" arcHeight="10.0" arcWidth="10.0" fill="#ba8a3f" height="20.0" layoutX="21.0" layoutY="51.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                <Rectangle fx:id="happyBar" arcHeight="10.0" arcWidth="10.0" fill="#b7d8cf" height="20.0" layoutX="21.0" layoutY="76.0" stroke="BLACK" strokeType="INSIDE" width="150.0" />
+                <Label alignment="CENTER" layoutX="184.0" layoutY="23.0" text="ХП" textAlignment="CENTER" textFill="#9f9f9f">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" layoutX="189.0" layoutY="44.0" style="&#10;" text="голод" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                <Label alignment="CENTER" layoutX="184.0" layoutY="47.0" text="Сытость" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" layoutX="189.0" layoutY="69.0" style="&#10;" text="досуг" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
+                <Label alignment="CENTER" layoutX="184.0" layoutY="72.0" text="Досуг" textAlignment="CENTER" textFill="#9f9f9f" wrapText="false">
                     <font>
                         <Font size="18.0" />
                     </font>
                 </Label>
-                <ImageView fx:id="chubrImage" fitHeight="233.0" fitWidth="427.0" layoutX="213.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="chubrImage" fitHeight="337.0" fitWidth="433.0" layoutX="184.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@chubr_1_1.png" />
+                        <Image url="@sprites/hare_base_1.png" />
                     </image>
                 </ImageView>
             </children>
