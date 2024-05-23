@@ -21,11 +21,17 @@ public class App extends Application {
     /** Сцена настроек. */
     private Scene settingsScene;
 
+    /** Сцена списка. */
+    private Scene listScene;
+
     /** Контроллер главной сцены. */
     private MainController mainController;
 
     /** Контроллер сцены настроек. */
     private SettingsController settingsController;
+
+    /** Контроллер сцены списка. */
+    private ListController listController;
 
     /** Старт приложения.
      * @param primaryStage - главное окно. */
@@ -43,10 +49,16 @@ public class App extends Application {
         // Загрузка окна настроек
         FXMLLoader settingsLoader = new FXMLLoader(getClass().getResource("settings-view.fxml"));
         Parent settingsRoot = settingsLoader.load();
-
         settingsController = settingsLoader.getController();
         settingsController.setApp(this);
         settingsScene = new Scene(settingsRoot);
+
+        // Загрузка окна списка
+        FXMLLoader listLoader = new FXMLLoader(getClass().getResource("list-view.fxml"));
+        Parent listRoot = listLoader.load();
+        listController = listLoader.getController();
+        listController.setApp(this);
+        listScene = new Scene(listRoot);
 
         // Инициализация параметров чубрика
 
@@ -56,6 +68,8 @@ public class App extends Application {
         Chubrick.setFormName(StateFile.getStartFormName());
         Chubrick.setState(StateFile.getStartState());
         Chubrick.setColor(StateFile.getStartColor());
+
+        mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
 
         loadChubrImage();
 
@@ -97,13 +111,8 @@ public class App extends Application {
         primaryStage.setOnCloseRequest(event -> handleExit(event));
     }
 
-    /** Поменять состояние при смерти. */
-    private void changeStateToDeath() {
-        //TODO: тут меняется картинка на гробик наверное.
-    }
-
     public static void main(String[] args) {
-        launch(args); //todo!!!!! убрать? ХЗ зачем оно нужно
+        launch(args);
     }
 
     /** Покормить чубрика. */
@@ -115,8 +124,8 @@ public class App extends Application {
 
     /** Открыть сцену TO-DO списка. */
     public void showToDoView() {
-        System.out.println("Будет туду"); //TODO: сделать сцену
-//        primaryStage.setScene(todoScene);
+        primaryStage.setScene(listScene);
+        listController.load();
     }
 
     /** Открыть сцену настроек. */

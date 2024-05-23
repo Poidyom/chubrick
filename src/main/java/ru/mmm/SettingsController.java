@@ -32,7 +32,7 @@ public class SettingsController {
 
     /** Поменять цвет чубрика. */
     @FXML
-    private void handleChangeColor() { //TODO: будут правки
+    private void handleChangeColor() {
         if (Chubrick.getColor() == 1) {
             Chubrick.setColor(2);
         } else {
@@ -44,7 +44,7 @@ public class SettingsController {
 
     /** Поменять вид чубрика. */
     @FXML
-    private void handleChangeForm() { //TODO: будут правки
+    private void handleChangeForm() {
         if (Chubrick.getFormName().equals("hare")) {
             Chubrick.setFormName("angel");
         } else if (Chubrick.getFormName().equals("angel")) {
