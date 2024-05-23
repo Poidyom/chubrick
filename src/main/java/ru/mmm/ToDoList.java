@@ -43,7 +43,7 @@ public class ToDoList {
      */
     public static void markAsCompleted(int num){
         System.out.println("Great success");
-        Chubrick.PlusHappy(5);
+        Chubrick.PlusHappy(20);
         DeleteTask(num);
     }
 }

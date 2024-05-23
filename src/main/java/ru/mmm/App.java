@@ -109,7 +109,7 @@ public class App extends Application {
     /** Покормить чубрика. */
     public void feed() {
         System.out.println("Чубрик кушает");
-        Chubrick.PlusEat(4);
+        Chubrick.PlusEat(16);
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
     }
 

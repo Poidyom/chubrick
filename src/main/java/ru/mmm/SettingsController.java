@@ -45,9 +45,9 @@ public class SettingsController {
     /** Поменять вид чубрика. */
     @FXML
     private void handleChangeForm() { //TODO: будут правки
-        if (Chubrick.getFormName() == "hare") {
+        if (Chubrick.getFormName().equals("hare")) {
             Chubrick.setFormName("angel");
-        } else if (Chubrick.getFormName() == "angel") {
+        } else if (Chubrick.getFormName().equals("angel")) {
             Chubrick.setFormName("clown");
         } else {
             Chubrick.setFormName("hare");
