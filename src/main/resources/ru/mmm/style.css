@@ -1,0 +1,8 @@
+.bodybg {
+    -fx-background-image: url("interface/background.png");
+    -fx-background-size: 900 506;
+}
+
+.button {
+    -fx-background-color: transparent;
+}

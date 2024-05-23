@@ -96,6 +96,6 @@ public class Chubrick {
 
     /** Возврат пути до файла с изображением текущей конфигурации чубрика */
     public static String GetPathToAppearance(){
-        return  "..\\..\\..\\resources\\ru\\mmm\\appearances\\" + formName + "_" + color;
+        return  "/ru/mmm/sprites/" + formName + "_" + color;
     }
 }
