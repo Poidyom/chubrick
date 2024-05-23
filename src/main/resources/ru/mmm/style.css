@@ -1,6 +1,10 @@
-.bodybg {
+.main-background {
     -fx-background-image: url("interface/background.png");
     -fx-background-size: 900 506;
+}
+
+.settings-background {
+    -fx-background-image: url("interface/background.png");
 }
 
 .button {

@@ -18,6 +18,9 @@ public class Chubrick {
     /** Образ чубрика. */
     @Getter @Setter
     private static String formName;
+    /** Состояние чубрика. */
+    @Getter @Setter
+    private static String state;
     /** Цвет чубрика. */
     @Getter @Setter
     private static int color;
@@ -96,6 +99,11 @@ public class Chubrick {
 
     /** Возврат пути до файла с изображением текущей конфигурации чубрика */
     public static String GetPathToAppearance(){
-        return  "/ru/mmm/sprites/" + formName + "_" + color;
+        if (health > 0) {
+            return  "/ru/mmm/sprites/" + formName + "_" + state + "_" + color + ".png";
+        }
+        else {
+            return "/ru/mmm/sprites/dead.png";
+        }
     }
 }
