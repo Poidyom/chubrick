@@ -2,14 +2,16 @@ package ru.mmm;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.Setter;
 
 import java.io.IOException;
 
@@ -21,45 +23,44 @@ public class StateFile {
     private static final ObjectMapper mapper = new ObjectMapper();
 
     /** Список возможных образов чубрика. */
-    @Getter @Setter
+    @Getter
     private static List<String> formNames;
     /** Список возможных цветов чубрика. */
-    @Getter @Setter
+    @Getter
     private static List<Integer> colors;
     /** Список возможных состояний чубрика. */
-    @Getter @Setter
+    @Getter
     private static List<String> states;
     /** Здоровье из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static int startHealth;
     /** Сытость из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static int startHunger;
     /** Счастье из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static int startHappy;
     /** Количество съеденного из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static int startAmountOfEaten;
     /** Образ чубрика из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static String startFormName;
     /** Состояние чубрика из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static String startState;
     /** Цвет чубрика из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static int startColor;
     /** Список заданий из файла состояний. */
-    @Getter @Setter
+    @Getter
     private static List<String> startToDoList;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {
-        File file = new File(stateFilePath);
         try{
             ObjectMapper mapper = new ObjectMapper();
-            JsonNode rootNode = mapper.readTree(file);
+            JsonNode rootNode = mapper.readTree(new File(stateFilePath));
             formNames = mapper.convertValue(rootNode.get("formNames"), new TypeReference<List<String>>() {});
             colors = mapper.convertValue(rootNode.get("colors"), new TypeReference<List<Integer>>() {});
             states = mapper.convertValue(rootNode.get("states"), new TypeReference<List<String>>() {});
@@ -78,11 +79,35 @@ public class StateFile {
         }
     }
 
-    /**
-     * Выгрузить состояние программы в файл состояний
+    /** Выгрузить состояние программы в файл состояний. */
+    public static void convertToJson() {
+        try {
+            ObjectMapper mapper = new ObjectMapper();
+            ObjectNode rootNode = mapper.createObjectNode();
 
-     */
-    public static void UnloadStates(){
-        //загрузка состояний В json
+            rootNode.put("formNames", mapper.valueToTree(formNames));
+            rootNode.put("colors", mapper.valueToTree(colors));
+            rootNode.put("states", mapper.valueToTree(states));
+
+            ObjectNode chubrickNode = mapper.createObjectNode();
+            chubrickNode.put("startHealth", Chubrick.getHealth());
+            chubrickNode.put("startHunger", Chubrick.getHunger());
+            chubrickNode.put("startHappy", Chubrick.getHappy());
+            chubrickNode.put("startAmountOfEaten", Chubrick.getAmountOfEaten());
+            chubrickNode.put("startFormName", Chubrick.getFormName());
+            chubrickNode.put("startColor", Chubrick.getColor());
+            chubrickNode.put("startState", Chubrick.getState());
+            rootNode.set("chubrick", chubrickNode);
+
+            rootNode.put("startToDoList", mapper.valueToTree(ToDoList.getTasks()));
+
+            ObjectMapper objectMapper = new ObjectMapper();
+            objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+            objectMapper.writeValue(new File(stateFilePath), rootNode);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

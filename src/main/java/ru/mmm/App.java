@@ -144,7 +144,7 @@ public class App extends Application {
     /** Обработка выхода приложения.
      * @param event - событие окна. */
     private void handleExit(WindowEvent event) {
-        // TODO: вызов метода сохраения статы чубрика
+        StateFile.convertToJson();
         System.out.println("Чубрик отключился");
     }
 }

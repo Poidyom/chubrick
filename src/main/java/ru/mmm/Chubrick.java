@@ -14,6 +14,7 @@ public class Chubrick {
     /** Счастье. */
     @Getter private static int happy;
     /** Количество съеденного. */
+    @Getter @Setter
     private static int amountOfEaten;
     /** Образ чубрика. */
     @Getter @Setter
@@ -36,7 +37,6 @@ public class Chubrick {
         happy = _happy;
         amountOfEaten = _amountOfEaten;
     }
-
 
     /** Обнуление количества съеденной еды. */
     public static void resetFood(){
