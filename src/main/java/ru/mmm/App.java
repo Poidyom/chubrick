@@ -50,11 +50,12 @@ public class App extends Application {
 
         // Инициализация параметров чубрика
 
-        // TODO: Тут должен быть вызов метода чубрика, который все загружает
-        Chubrick.SetCharacterParams(1, 150, 150, 0);
-        Chubrick.setFormName("hare");
-        Chubrick.setState("base");
-        Chubrick.setColor(1);
+        StateFile.loadFromJson();
+
+        Chubrick.SetCharacterParams(StateFile.getStartHealth(), StateFile.getStartHunger(), StateFile.getStartHappy(), StateFile.getStartAmountOfEaten());
+        Chubrick.setFormName(StateFile.getStartFormName());
+        Chubrick.setState(StateFile.getStartState());
+        Chubrick.setColor(StateFile.getStartColor());
 
         loadChubrImage();
 

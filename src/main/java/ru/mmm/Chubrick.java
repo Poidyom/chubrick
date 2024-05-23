@@ -11,7 +11,7 @@ public class Chubrick {
     @Getter private static int health;
     /** Сытость. */
     @Getter private static int hunger;
-    /** Скука. */
+    /** Счастье. */
     @Getter private static int happy;
     /** Количество съеденного. */
     private static int amountOfEaten;
@@ -28,7 +28,7 @@ public class Chubrick {
      * Задать стартовые параметры чубрика.
      * @param _health стартовое значение здоровья
      * @param _hunger стартовое значение сытости
-     * @param _happy стартовое значение скуки
+     * @param _happy стартовое значение счастья
      */
     public static void SetCharacterParams(int _health, int _hunger, int _happy, int _amountOfEaten) {
         health = _health;
@@ -57,8 +57,8 @@ public class Chubrick {
         return false;
     }
     /**
-     * Увеличить скуку.
-     * @param value добавляемое значение скуки
+     * Увеличить счастье.
+     * @param value добавляемое значение счастья
      */
     public static void PlusHappy(int value){
         happy += value;
@@ -78,8 +78,8 @@ public class Chubrick {
         if(hunger < 0) hunger = 0;
     }
     /**
-     * Уменьшение скуки.
-     * @param value количество, на которое уменьшается скука
+     * Уменьшение счастья.
+     * @param value количество, на которое уменьшается счастье
      */
     public static void MinusHappy(int value){
         happy -= value;
