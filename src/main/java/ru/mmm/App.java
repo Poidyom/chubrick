@@ -103,7 +103,7 @@ public class App extends Application {
 
         // Таймлайн для скуки
         Timeline timelineBore = new Timeline(
-                new KeyFrame(Duration.seconds(60), event -> {
+                new KeyFrame(Duration.seconds(1), event -> {
                     Chubrick.MinusHappy(5);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();

@@ -84,6 +84,12 @@ public class Chubrick {
     public static void MinusHappy(int value){
         happy -= value;
         if(happy < 0) happy = 0;
+        if(happy < 70 && !state.equals("death")){
+            state = "sad";
+        }
+        else if (happy >= 70 && !state.equals("death")){
+            state = "base";
+        }
     }
     /**
      * Уменьшение здоровья.
