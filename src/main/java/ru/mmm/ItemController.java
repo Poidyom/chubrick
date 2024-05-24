@@ -3,7 +3,10 @@ package ru.mmm;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import lombok.Getter;
 
+
+@Getter
 public class ItemController {
     @FXML
     private Label taskName;
@@ -11,11 +14,6 @@ public class ItemController {
     @FXML
     private Button deleteButton;
 
-    public Label getTaskName() {
-        return taskName;
-    }
-
-    public Button getDeleteButton() {
-        return deleteButton;
-    }
+    @FXML
+    private Button checkButton;
 }

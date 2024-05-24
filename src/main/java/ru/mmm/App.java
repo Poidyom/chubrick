@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.stage.WindowEvent;
@@ -69,6 +70,8 @@ public class App extends Application {
         Chubrick.setState(StateFile.getStartState());
         Chubrick.setColor(StateFile.getStartColor());
 
+        ToDoList.SetToDoList();
+
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
 
         loadChubrImage();
@@ -79,7 +82,7 @@ public class App extends Application {
                     if (Chubrick.MinusHealth(10)) {
 
                     }
-                    Chubrick.MinusEat(4);
+                    Chubrick.MinusEat(5);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
                 })
@@ -106,6 +109,7 @@ public class App extends Application {
         primaryStage.show();
         loadChubrImage();
 
+        primaryStage.getIcons().add(new Image(getClass().getResource("/ru/mmm/sprites/angel_base_1.png").toExternalForm()));
 
         // Установка обработки закрытия
         primaryStage.setOnCloseRequest(event -> handleExit(event));
@@ -117,8 +121,9 @@ public class App extends Application {
 
     /** Покормить чубрика. */
     public void feed() {
-        System.out.println("Чубрик кушает");
-        Chubrick.PlusEat(16);
+        if (Chubrick.PlusEat(30)) {
+            System.out.println("Чубрик кушает");
+        }
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
     }
 

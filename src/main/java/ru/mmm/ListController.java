@@ -1,18 +1,13 @@
 package ru.mmm;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import lombok.Setter;
-
 import java.io.IOException;
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
+import java.util.Random;
 
 public class ListController{
     /** Указатель на приложение. */
@@ -35,7 +30,15 @@ public class ListController{
     );
 
     public void load() { //TODO
-        for (String task : tasks) {
+        int c = 0;
+
+        if (ToDoList.getTasks() == null) {
+            return;
+        }
+
+        itemHolder.getChildren().clear();
+
+        for (String task : ToDoList.getTasks()) {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("item.fxml"));
                 Node node = loader.load();
@@ -43,7 +46,19 @@ public class ListController{
 
                 itemController.getTaskName().setText(task);
 
-                itemController.getDeleteButton().setOnAction(event -> itemHolder.getChildren().remove(node));
+                node.setId(String.valueOf(c++));
+
+                itemController.getDeleteButton().setOnAction(event -> {
+                    itemHolder.getChildren().remove(node);
+                    ToDoList.DeleteTask(Integer.parseInt(node.getId()));
+                    load();
+                });
+
+                itemController.getCheckButton().setOnAction(event -> {
+                    System.out.println(itemController.getTaskName().getText());
+                    ToDoList.markAsCompleted(Integer.parseInt(node.getId()));
+                    load();
+                });
 
                 itemHolder.getChildren().add(node);
             } catch (IOException e) {
@@ -52,9 +67,17 @@ public class ListController{
         }
     }
 
+
+    private int count = 0;
     @FXML
-    public void addTask()
-    {
-        System.out.println("Добавится"); //TODO открыть окно с
+    public void addTask() {
+        System.out.println("Добавится");
+        ToDoList.AddTask("Test task №" + String.valueOf(count++));
+        load();
+    }
+
+    @FXML
+    public void exitToMain() {
+        app.showMainView();
     }
 }
