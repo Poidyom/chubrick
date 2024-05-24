@@ -27,6 +27,10 @@ public class App extends Application {
     /** Контроллер сцены настроек. */
     private SettingsController settingsController;
 
+    public static void main(String[] args) {
+        launch(args); //todo!!!!! убрать? ХЗ зачем оно нужно
+    }
+
     /** Старт приложения.
      * @param primaryStage - главное окно. */
     @Override
@@ -73,7 +77,7 @@ public class App extends Application {
 
         // Таймлайн для скуки
         Timeline timelineBore = new Timeline(
-                new KeyFrame(Duration.seconds(60), event -> {
+                new KeyFrame(Duration.seconds(1), event -> {
                     Chubrick.MinusHappy(5);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
@@ -100,10 +104,6 @@ public class App extends Application {
     /** Поменять состояние при смерти. */
     private void changeStateToDeath() {
         //TODO: тут меняется картинка на гробик наверное.
-    }
-
-    public static void main(String[] args) {
-        launch(args); //todo!!!!! убрать? ХЗ зачем оно нужно
     }
 
     /** Покормить чубрика. */
