@@ -3,13 +3,9 @@ package ru.mmm;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import lombok.Setter;
 import java.io.IOException;
-import java.util.List;
-import java.util.Random;
 
 public class ListController{
     /** Указатель на приложение. */

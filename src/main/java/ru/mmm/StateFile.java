@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class StateFile {
     private static int startColor;
     /** Список заданий из файла состояний. */
     @Getter
-    private static List<String> startToDoList;
+    private static ArrayList<String> startToDoList;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {
@@ -73,7 +74,7 @@ public class StateFile {
             startFormName = mapper.convertValue(chubrickNode.get("startFormName"), String.class);
             startColor = chubrickNode.get("startColor").asInt();
             startState = mapper.convertValue(chubrickNode.get("startState"), String.class);
-            startToDoList = mapper.convertValue(rootNode.get("startToDoList"), new TypeReference<List<String>>() {});
+            startToDoList = mapper.convertValue(rootNode.get("startToDoList"), new TypeReference<ArrayList<String>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -83,7 +83,7 @@ public class App extends Application {
         Chubrick.setState(StateFile.getStartState());
         Chubrick.setColor(StateFile.getStartColor());
 
-        ToDoList.SetToDoList();
+        ToDoList.SetToDoList(StateFile.getStartToDoList());
 
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
 
