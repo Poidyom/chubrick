@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="640.0" style="-fx-background-color: #FBFCFC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.ItemController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="47.0" prefWidth="640.0" style="-fx-background-color: #FBFCFC;" xmlns="http://javafx.com/javafx/20" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.ItemController">
     <left>
         <Label fx:id="taskName" text="Text" wrapText="true" BorderPane.alignment="CENTER_LEFT" maxWidth="400.0" >
             <padding>
@@ -21,18 +21,14 @@
             <Button fx:id="checkButton" mnemonicParsing="false" BorderPane.alignment="CENTER">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@interface/dot_button.png" />
-                        </image>
+                        <Image url="@interface/dot_button.png"/>
                     </ImageView>
                 </graphic>
             </Button>
             <Button fx:id="deleteButton" mnemonicParsing="false" BorderPane.alignment="CENTER">
                 <graphic>
                     <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                            <Image url="@interface/delete_button.png" />
-                        </image>
+                        <Image url="@interface/delete_button.png"/>
                     </ImageView>
                 </graphic>
             </Button>
