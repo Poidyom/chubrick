@@ -21,7 +21,8 @@
                                 <Image url="@interface/plus_button.png" />
                             </image>
                         </ImageView>
-                    </graphic></Button>
+                    </graphic>
+                </Button>
                 <Text fill="#9f9f9f" layoutX="14.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TO-DO лист" wrappingWidth="251.99997558593736">
                     <font>
                         <Font size="30.0" />
@@ -33,7 +34,7 @@
                 </ScrollPane>
             <Button fx:id="exitButton" graphicTextGap="0.0" layoutX="518.0" layoutY="8.0" mnemonicParsing="false" onAction="#exitToMain" prefWidth="109.0" stylesheets="@style.css">
                <graphic>
-                  <ImageView fitHeight="58.0" fitWidth="64.0">
+                  <ImageView fitHeight="58.0" fitWidth="58.0">
                      <image>
                         <Image url="@interface/delete_button.png" />
                      </image>

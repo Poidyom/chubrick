@@ -25,6 +25,9 @@ public class App extends Application {
     /** Сцена списка. */
     private Scene listScene;
 
+    /** Сцена ввода задания. */
+    private Scene taskScene;
+
     /** Контроллер главной сцены. */
     private MainController mainController;
 
@@ -33,6 +36,9 @@ public class App extends Application {
 
     /** Контроллер сцены списка. */
     private ListController listController;
+
+    /** Контроллер сцены ввода задания. */
+    TaskController taskController;
 
     /** Старт приложения.
      * @param primaryStage - главное окно. */
@@ -60,6 +66,13 @@ public class App extends Application {
         listController = listLoader.getController();
         listController.setApp(this);
         listScene = new Scene(listRoot);
+
+        // Загрузка окна ввода задания
+        FXMLLoader taskLoader = new FXMLLoader(getClass().getResource("task-view.fxml"));
+        Parent taskRoot = taskLoader.load();
+        taskController = taskLoader.getController();
+        taskController.setApp(this);
+        taskScene = new Scene(taskRoot);
 
         // Инициализация параметров чубрика
 
@@ -137,6 +150,12 @@ public class App extends Application {
     public void showSettingsView() {
         primaryStage.setScene(settingsScene);
         loadChubrImage();
+    }
+
+    /** Открыть сцену ввода. */
+    public void showTaskView() {
+        taskController.textInput.setText("");
+        primaryStage.setScene(taskScene);
     }
 
     /** Открыть главную сцену. */

@@ -3,6 +3,8 @@ package ru.mmm;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import lombok.Setter;
 import java.io.IOException;
@@ -17,19 +19,7 @@ public class ListController{
     @FXML
     private VBox itemHolder;
 
-    private final List<String> tasks = List.of( //TODO убрать "это пример"
-            "Task 1: Текст задачи, текст задачи,Текст задачи, текст задачи, текстТекст задачи, текст задачи, текстТекст задачи, текст задачи, текст текст задачи, текст задачи, текст задачи, текст задачи, текст задачи,",
-            "Task 2: Fix bugs",
-            "Task 3: Update documentation",
-            "Task 4: Prepare presentation",
-            "Task 5: Team meeting",
-            "Task 1: Текст задачи, текст задачи,Текст задачи, текст задачи, текстТекст задачи, текст задачи, текстТекст задачи, текст задачи, текст текст задачи, текст задачи, текст задачи, текст задачи, текст задачи,",
-            "Task 2: Fix bugs",
-            "Task 3: Update documentation",
-            "Task 4: Prepare presentation"
-    );
-
-    public void load() { //TODO
+    public void load() {
         int c = 0;
 
         if (ToDoList.getTasks() == null) {
@@ -70,10 +60,8 @@ public class ListController{
 
     private int count = 0;
     @FXML
-    public void addTask() {
-        System.out.println("Добавится");
-        ToDoList.AddTask("Test task №" + String.valueOf(count++));
-        load();
+    public void addTask() throws IOException {
+        app.showTaskView();
     }
 
     @FXML
