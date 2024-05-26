@@ -23,8 +23,6 @@ public class StateFile {
     /** Путь к файлу состояний. */
     @Setter
     private static String stateFilePath;
-    private static final ObjectMapper mapper = new ObjectMapper();
-
     /** Список возможных образов чубрика. */
     @Getter
     private static List<String> formNames;
