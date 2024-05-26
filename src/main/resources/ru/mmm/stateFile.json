@@ -22,5 +22,6 @@
     "startColor": 1,
     "startState": "base"
   },
-  "startToDoList": []
+  "startToDoList": [],
+  "startStateOfQuest" : [ 0, 0, 0 ]
 }

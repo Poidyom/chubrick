@@ -20,6 +20,7 @@ public class TaskController {
         if (!Objects.equals(input, ""))
         {
             ToDoList.AddTask(input);
+            Quest.handlerTaskOfTree(input);
             app.showToDoView();
         }
     }

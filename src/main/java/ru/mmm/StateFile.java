@@ -20,7 +20,7 @@ import java.io.IOException;
 @NoArgsConstructor
 public class StateFile {
     /** Путь к файлу состояний. */
-    private static final String stateFilePath = "src\\main\\resources\\ru\\mmm\\stateFile.json";
+    private static final String stateFilePath = "src/main/resources/ru/mmm/stateFile.json";
     private static final ObjectMapper mapper = new ObjectMapper();
 
     /** Список возможных образов чубрика. */
@@ -56,6 +56,8 @@ public class StateFile {
     /** Список заданий из файла состояний. */
     @Getter
     private static ArrayList<String> startToDoList;
+    @Getter
+    private static ArrayList<Integer> startStateOfQuest;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {
@@ -75,6 +77,7 @@ public class StateFile {
             startColor = chubrickNode.get("startColor").asInt();
             startState = mapper.convertValue(chubrickNode.get("startState"), String.class);
             startToDoList = mapper.convertValue(rootNode.get("startToDoList"), new TypeReference<ArrayList<String>>() {});
+            startStateOfQuest = mapper.convertValue(rootNode.get("startStateOfQuest"), new TypeReference<ArrayList<Integer>>() {});
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -101,6 +104,7 @@ public class StateFile {
             rootNode.set("chubrick", chubrickNode);
 
             rootNode.put("startToDoList", mapper.valueToTree(ToDoList.getTasks()));
+            rootNode.put("startStateOfQuest", mapper.valueToTree(Quest.getQuestState()));
 
             ObjectMapper objectMapper = new ObjectMapper();
             objectMapper.enable(SerializationFeature.INDENT_OUTPUT);

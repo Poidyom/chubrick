@@ -84,6 +84,11 @@ public class App extends Application {
         Chubrick.setColor(StateFile.getStartColor());
 
         ToDoList.SetToDoList(StateFile.getStartToDoList());
+        Quest.setQuestState(StateFile.getStartStateOfQuest());
+        if (StateFile.getStartStateOfQuest().get(0) == 0)
+        {
+            Quest.creatingTaskOne();
+        }
 
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
 
@@ -137,6 +142,7 @@ public class App extends Application {
         if (Chubrick.PlusEat(30)) {
             System.out.println("Чубрик кушает");
         }
+        Quest.handlerTaskOne(1);
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
     }
 
@@ -144,6 +150,7 @@ public class App extends Application {
     public void showToDoView() {
         primaryStage.setScene(listScene);
         listController.load();
+        Quest.handlerTaskOne(2);
     }
 
     /** Открыть сцену настроек. */
