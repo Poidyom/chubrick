@@ -11,6 +11,10 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.stage.WindowEvent;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+
 /** Класс - точка входа в приложение. */
 public class App extends Application {
     /** Главное окно. */
@@ -76,7 +80,7 @@ public class App extends Application {
 
         // Инициализация параметров чубрика
 
-        StateFile.loadFromJson();
+        loadStats();
 
         Chubrick.SetCharacterParams(StateFile.getStartHealth(), StateFile.getStartHunger(), StateFile.getStartHappy(), StateFile.getStartAmountOfEaten());
         Chubrick.setFormName(StateFile.getStartFormName());
@@ -180,5 +184,42 @@ public class App extends Application {
     private void handleExit(WindowEvent event) {
         StateFile.convertToJson();
         System.out.println("Чубрик отключился");
+    }
+
+    /** Загрузка состояния чубрика. */
+    private void loadStats() {
+
+        File theDir = new File(System.getProperty("user.home") + "/Documents/MMM/chubrick");
+        if (!theDir.exists()){
+            theDir.mkdirs();
+        }
+        String filePath = System.getProperty("user.home") + "/Documents/MMM/chubrick/stateFile.json";
+        File file = new File(filePath);
+        try {
+            if (!file.exists()) {
+                file.createNewFile();
+                FileWriter fileWriter = new FileWriter(file);
+                fileWriter.write("{\n" +
+                        "  \"formNames\" : [ \"hare\", \"angel\", \"clown\" ],\n" +
+                        "  \"colors\" : [ 1, 2 ],\n" +
+                        "  \"states\" : [ \"base\", \"sad\", \"death\" ],\n" +
+                        "  \"chubrick\" : {\n" +
+                        "    \"startHealth\" : 150,\n" +
+                        "    \"startHunger\" : 150,\n" +
+                        "    \"startHappy\" : 150,\n" +
+                        "    \"startAmountOfEaten\" : 0,\n" +
+                        "    \"startFormName\" : \"hare\",\n" +
+                        "    \"startColor\" : 1,\n" +
+                        "    \"startState\" : \"base\"\n" +
+                        "  },\n" +
+                        "  \"startToDoList\" : [ ]\n" +
+                        "}");
+                fileWriter.close();
+            }
+            StateFile.setStateFilePath(filePath);
+            StateFile.loadFromJson();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

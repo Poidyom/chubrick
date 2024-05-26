@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +21,8 @@ import java.io.IOException;
 @NoArgsConstructor
 public class StateFile {
     /** Путь к файлу состояний. */
-    private static final String stateFilePath = "src\\main\\resources\\ru\\mmm\\stateFile.json";
+    @Setter
+    private static String stateFilePath;
     private static final ObjectMapper mapper = new ObjectMapper();
 
     /** Список возможных образов чубрика. */
