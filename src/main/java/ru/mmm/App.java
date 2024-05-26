@@ -41,7 +41,7 @@ public class App extends Application {
     TaskController taskController;
 
     /** Старт приложения.
-     * @param primaryStage - главное окно. */
+     * @param primaryStage главное окно. */
     @Override
     public void start(Stage primaryStage) throws Exception {
         this.primaryStage = primaryStage;
@@ -92,9 +92,7 @@ public class App extends Application {
         // Таймлайн для еды
         Timeline timelineFood = new Timeline(
                 new KeyFrame(Duration.seconds(1), event -> {
-                    if (Chubrick.MinusHealth(10)) {
-
-                    }
+                    Chubrick.MinusHealth(10);
                     Chubrick.MinusEat(5);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
@@ -125,9 +123,12 @@ public class App extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResource("/ru/mmm/sprites/angel_base_1.png").toExternalForm()));
 
         // Установка обработки закрытия
-        primaryStage.setOnCloseRequest(event -> handleExit(event));
+        primaryStage.setOnCloseRequest(this::handleExit);
     }
 
+    /** Главный метод запуска приложения JavaFX.
+     * @param args агументы командной строки, переданные в приложение.
+     * */
     public static void main(String[] args) {
         launch(args);
     }
@@ -175,7 +176,7 @@ public class App extends Application {
     }
 
     /** Обработка выхода приложения.
-     * @param event - событие окна. */
+     * @param event событие окна. */
     private void handleExit(WindowEvent event) {
         StateFile.convertToJson();
         System.out.println("Чубрик отключился");
