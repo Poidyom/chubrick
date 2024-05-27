@@ -7,14 +7,17 @@ import javafx.scene.layout.VBox;
 import lombok.Setter;
 import java.io.IOException;
 
+/** Класс - контроллер cцены списка. */
 public class ListController{
     /** Указатель на приложение. */
     @Setter
     private App app;
 
+    /** Область для списка. */
     @FXML
     private VBox itemHolder;
 
+    /** Загрузить список. */
     public void load() {
         int c = 0;
 
@@ -53,13 +56,13 @@ public class ListController{
         }
     }
 
-
-    private int count = 0;
+    /** Создать новое задание. */
     @FXML
     public void addTask() throws IOException {
         app.showTaskView();
     }
 
+    /** Вернуться в главное окно. */
     @FXML
     public void exitToMain() {
         app.showMainView();
