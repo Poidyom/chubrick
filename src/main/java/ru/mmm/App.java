@@ -88,6 +88,7 @@ public class App extends Application {
         Chubrick.setFormName(StateFile.getStartFormName());
         Chubrick.setState(StateFile.getStartState());
         Chubrick.setColor(StateFile.getStartColor());
+        Chubrick.setSp(StateFile.getSp());
 
         ToDoList.SetToDoList(StateFile.getStartToDoList());
         Quest.setQuestState(StateFile.getStartStateOfQuest());
@@ -244,7 +245,8 @@ public class App extends Application {
                         "    \"startAmountOfEaten\": 0,\n" +
                         "    \"startFormName\": \"hare\",\n" +
                         "    \"startColor\": 1,\n" +
-                        "    \"startState\": \"base\"\n" +
+                        "    \"startState\": \"base\",\n" +
+                        "    \"sp\": \"\"\n" +
                         "  },\n" +
                         "  \"startToDoList\": [],\n" +
                         "  \"startStateOfQuest\" : [ 0, 0, 0 ]\n" +

@@ -274,6 +274,7 @@ public class Quest {
                 setState(2, 2);
                 System.out.println("Третий таск выполнен");
                 changeContentOfFile("YOU DID IT!!! YAPPI");
+                Chubrick.setSp("sp_");
             }
         }
     }

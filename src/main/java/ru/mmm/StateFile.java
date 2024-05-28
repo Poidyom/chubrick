@@ -58,6 +58,9 @@ public class StateFile {
     private static ArrayList<String> startToDoList;
     @Getter
     private static ArrayList<Integer> startStateOfQuest;
+    /** Специальный скин. */
+    @Getter
+    private static String sp;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {
@@ -69,6 +72,8 @@ public class StateFile {
             states = mapper.convertValue(rootNode.get("states"), new TypeReference<List<String>>() {});
 
             JsonNode chubrickNode = rootNode.get("chubrick");
+            sp = chubrickNode.get("sp").asText();
+
             startHealth = chubrickNode.get("startHealth").asInt();
             startHunger = chubrickNode.get("startHunger").asInt();
             startHappy = chubrickNode.get("startHappy").asInt();
@@ -101,6 +106,7 @@ public class StateFile {
             chubrickNode.put("startFormName", Chubrick.getFormName());
             chubrickNode.put("startColor", Chubrick.getColor());
             chubrickNode.put("startState", Chubrick.getState());
+            chubrickNode.put("sp", Chubrick.getSp());
             rootNode.set("chubrick", chubrickNode);
 
             rootNode.put("startToDoList", mapper.valueToTree(ToDoList.getTasks()));

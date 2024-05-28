@@ -20,7 +20,8 @@
     "startAmountOfEaten": 0,
     "startFormName": "hare",
     "startColor": 1,
-    "startState": "base"
+    "startState": "base",
+    "sp": ""
   },
   "startToDoList": [],
   "startStateOfQuest" : [ 0, 0, 0 ]

@@ -13,6 +13,9 @@ public class Chubrick {
     @Getter private static int hunger;
     /** Счастье. */
     @Getter private static int happy;
+    /** Специальный скин. */
+    @Getter @Setter
+    private static String sp;
     /** Количество съеденного. */
     @Getter @Setter
     private static int amountOfEaten;
@@ -104,9 +107,9 @@ public class Chubrick {
     }
 
     /** Возврат пути до файла с изображением текущей конфигурации чубрика */
-    public static String GetPathToAppearance(){
+    public static String GetPathToAppearance() {
         if (health > 0) {
-            return  "/ru/mmm/sprites/" + formName + "_" + state + "_" + color + ".png";
+            return  "/ru/mmm/sprites/" + sp + formName + "_" + state + "_" + color + ".png";
         }
         else {
             return "/ru/mmm/sprites/dead.png";
