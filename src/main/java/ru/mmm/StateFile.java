@@ -8,6 +8,7 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,6 +59,8 @@ public class StateFile {
     private static ArrayList<String> startToDoList;
     @Getter
     private static ArrayList<Integer> startStateOfQuest;
+    @Setter
+    private static String StateFilePath;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {

@@ -61,6 +61,8 @@
                         <Image url="@sprites/hare_base_1.png" />
                     </image>
                 </ImageView>
+                <Button fx:id="invisibleButton" layoutX="21.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleInvisibleButton" stylesheets="@style.css" visible="false">
+                </Button>
             </children>
         </AnchorPane>
     </children>

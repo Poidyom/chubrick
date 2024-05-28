@@ -10,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import javafx.stage.WindowEvent;
+import lombok.Getter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -33,6 +34,7 @@ public class App extends Application {
     private Scene taskScene;
 
     /** Контроллер главной сцены. */
+    @Getter
     private MainController mainController;
 
     /** Контроллер сцены настроек. */
@@ -148,6 +150,10 @@ public class App extends Application {
             System.out.println("Чубрик кушает");
         }
         Quest.handlerTaskOne(1);
+        if (Quest.currentState() == 1)
+        {
+            mainController.showButton();
+        }
         mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
     }
 
@@ -173,7 +179,17 @@ public class App extends Application {
     /** Открыть главную сцену. */
     public void showMainView() {
         primaryStage.setScene(mainScene);
+        if (Quest.currentState() == 1)
+        {
+            mainController.showButton();
+        }
         loadChubrImage();
+    }
+
+    /**Завершение второго таска */
+    public void pressInvisibleButton() {
+        Quest.handlerTaskOfTwo();
+        mainController.hideButton();
     }
 
     /** Загрузка изображения чубрика */
@@ -220,6 +236,7 @@ public class App extends Application {
                         "    \"startState\" : \"base\"\n" +
                         "  },\n" +
                         "  \"startToDoList\" : [ ]\n" +
+                        "  \"startStateOfQuest\" : [ 0, 0, 0 ]\n" +
                         "}");
                 fileWriter.close();
             }

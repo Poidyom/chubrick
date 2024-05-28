@@ -1,5 +1,7 @@
 package ru.mmm;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,6 +12,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.io.IOException;
 import java.io.File;
+
 
 /** Класс квеста, контроллер*/
 @NoArgsConstructor
@@ -215,7 +218,7 @@ public class Quest {
     {
         setState(1, 1);
         changeContentOfFile(clue);
-        handlerTaskOfTwo();;
+        //handlerTaskOfTwo();;
 
     }
     /**

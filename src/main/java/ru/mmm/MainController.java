@@ -1,6 +1,7 @@
 package ru.mmm;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
@@ -27,6 +28,10 @@ public class MainController {
     /** Количество счастья. */
     @FXML
     private Rectangle happyBar;
+
+    /** Невидимая кнопка для второго квеста. */
+    @FXML
+    private Button invisibleButton;
 
     /**
      * Показать текущую статистику чубрика.
@@ -64,5 +69,19 @@ public class MainController {
     @FXML
     private void handleOpenSettings() {
         app.showSettingsView();
+    }
+
+    /** Нажатие на невидимую кнопку для второго таска квеста. */
+    @FXML
+    private void handleInvisibleButton() {
+        app.pressInvisibleButton();
+    }
+
+    public void showButton() {
+        invisibleButton.setVisible(true);
+    }
+
+    public void hideButton() {
+        invisibleButton.setVisible(false);
     }
 }
