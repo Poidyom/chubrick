@@ -1,10 +1,13 @@
 package ru.mmm;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 import lombok.Setter;
 
 /** Класс - контроллер главной сцены. */
@@ -13,9 +16,13 @@ public class MainController {
     @Setter
     private App app;
 
-    /** Контейнер с изображением. */
+    /** Контейнер с изображением чубрика. */
     @FXML
     private ImageView chubrImage;
+
+    /** Контейнер с изображением лампы. */
+    @FXML
+    private ImageView lampImage;
 
     /** Количество здоровья. */
     @FXML
@@ -69,6 +76,21 @@ public class MainController {
     @FXML
     private void handleOpenSettings() {
         app.showSettingsView();
+    }
+
+    /** Выключить свет (сон). */
+    @FXML
+    private void handleLamp() {
+        lampImage.setImage(new Image(getClass().getResource("/ru/mmm/interface/lamp_off.png").toExternalForm()));
+        Timeline sleep = new Timeline(
+                new KeyFrame(Duration.seconds(3), event -> {
+                    lampImage.setImage(new Image(getClass().getResource("/ru/mmm/interface/lamp_on.png").toExternalForm()));
+                    Chubrick.Sleep();
+                })
+        );
+
+        sleep.setCycleCount(1);
+        sleep.play();
     }
 
     /** Нажатие на невидимую кнопку для второго таска квеста. */
