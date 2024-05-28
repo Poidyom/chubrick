@@ -102,9 +102,9 @@ public class App extends Application {
 
         // Таймлайн для еды
         Timeline timelineFood = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> {
+                new KeyFrame(Duration.seconds(3), event -> {
                     Chubrick.MinusHealth(10);
-                    Chubrick.MinusEat(5);
+                    Chubrick.MinusEat(1);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
                 })
@@ -112,8 +112,8 @@ public class App extends Application {
 
         // Таймлайн для скуки
         Timeline timelineBore = new Timeline(
-                new KeyFrame(Duration.seconds(1), event -> {
-                    Chubrick.MinusHappy(5);
+                new KeyFrame(Duration.seconds(30), event -> {
+                    Chubrick.MinusHappy(1);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
                 })
