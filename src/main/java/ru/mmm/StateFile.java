@@ -21,9 +21,8 @@ import java.io.IOException;
 @NoArgsConstructor
 public class StateFile {
     /** Путь к файлу состояний. */
-    private static final String stateFilePath = "src/main/resources/ru/mmm/stateFile.json";
-    private static final ObjectMapper mapper = new ObjectMapper();
-
+    @Setter
+    private static String stateFilePath;
     /** Список возможных образов чубрика. */
     @Getter
     private static List<String> formNames;
@@ -59,8 +58,6 @@ public class StateFile {
     private static ArrayList<String> startToDoList;
     @Getter
     private static ArrayList<Integer> startStateOfQuest;
-    @Setter
-    private static String StateFilePath;
 
     /** Загрузить состояние программы из файла состояний. */
     public static void loadFromJson() throws IOException {
