@@ -223,19 +223,30 @@ public class App extends Application {
                 file.createNewFile();
                 FileWriter fileWriter = new FileWriter(file);
                 fileWriter.write("{\n" +
-                        "  \"formNames\" : [ \"hare\", \"angel\", \"clown\" ],\n" +
-                        "  \"colors\" : [ 1, 2 ],\n" +
-                        "  \"states\" : [ \"base\", \"sad\", \"death\" ],\n" +
-                        "  \"chubrick\" : {\n" +
-                        "    \"startHealth\" : 150,\n" +
-                        "    \"startHunger\" : 150,\n" +
-                        "    \"startHappy\" : 150,\n" +
-                        "    \"startAmountOfEaten\" : 0,\n" +
-                        "    \"startFormName\" : \"hare\",\n" +
-                        "    \"startColor\" : 1,\n" +
-                        "    \"startState\" : \"base\"\n" +
+                        "  \"formNames\": [\n" +
+                        "    \"hare\",\n" +
+                        "    \"angel\",\n" +
+                        "    \"clown\"\n" +
+                        "  ],\n" +
+                        "  \"colors\": [\n" +
+                        "    1,\n" +
+                        "    2\n" +
+                        "  ],\n" +
+                        "  \"states\": [\n" +
+                        "    \"base\",\n" +
+                        "    \"sad\",\n" +
+                        "    \"death\"\n" +
+                        "  ],\n" +
+                        "  \"chubrick\": {\n" +
+                        "    \"startHealth\": 150,\n" +
+                        "    \"startHunger\": 150,\n" +
+                        "    \"startHappy\": 150,\n" +
+                        "    \"startAmountOfEaten\": 0,\n" +
+                        "    \"startFormName\": \"hare\",\n" +
+                        "    \"startColor\": 1,\n" +
+                        "    \"startState\": \"base\"\n" +
                         "  },\n" +
-                        "  \"startToDoList\" : [ ]\n" +
+                        "  \"startToDoList\": [],\n" +
                         "  \"startStateOfQuest\" : [ 0, 0, 0 ]\n" +
                         "}");
                 fileWriter.close();
