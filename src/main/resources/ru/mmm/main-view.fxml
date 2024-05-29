@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.MainController">
+<VBox prefHeight="400.0" prefWidth="640.0" xmlns="http://javafx.com/" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.mmm.MainController">
 
     <children>
         <AnchorPane maxHeight="-1.0" maxWidth="-1.0" prefHeight="626.0" prefWidth="704.0" styleClass="main-background" stylesheets="@style.css" VBox.vgrow="ALWAYS">
@@ -72,6 +72,11 @@
             </Button>
                 <Button fx:id="invisibleButton" layoutX="21.0" layoutY="100.0" mnemonicParsing="false" onAction="#handleInvisibleButton" stylesheets="@style.css" visible="false">
                 </Button>
+                <ImageView fx:id="sleepSign" fitHeight="105.0" fitWidth="116.0" layoutX="475.0" layoutY="106.0" pickOnBounds="true" preserveRatio="true" visible="false">
+                    <image>
+                        <Image url="@interface/Zzz.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
     </children>

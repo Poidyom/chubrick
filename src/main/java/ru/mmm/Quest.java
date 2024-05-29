@@ -136,6 +136,8 @@ public class Quest {
                 code.append(key2.charAt(i));
             }
         }
+        code.append(" ");
+        code.append(newAlphabet);
         return code.toString();
     }
 

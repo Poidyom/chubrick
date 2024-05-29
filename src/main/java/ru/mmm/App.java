@@ -105,7 +105,7 @@ public class App extends Application {
         Timeline timelineFood = new Timeline(
                 new KeyFrame(Duration.seconds(3), event -> {
                     Chubrick.MinusHealth(10);
-                    Chubrick.MinusEat(1);
+                    Chubrick.MinusEat(3);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
                 })
@@ -114,7 +114,7 @@ public class App extends Application {
         // Таймлайн для скуки
         Timeline timelineBore = new Timeline(
                 new KeyFrame(Duration.seconds(30), event -> {
-                    Chubrick.MinusHappy(1);
+                    Chubrick.MinusHappy(10);
                     mainController.updateBars(Chubrick.getHealth(), Chubrick.getHunger(), Chubrick.getHappy());
                     loadChubrImage();
                 })
@@ -132,7 +132,7 @@ public class App extends Application {
         primaryStage.show();
         loadChubrImage();
 
-        primaryStage.getIcons().add(new Image(getClass().getResource("/ru/mmm/sprites/angel_base_1.png").toExternalForm()));
+        primaryStage.getIcons().add(new Image(getClass().getResource("/ru/mmm/interface/icon.png").toExternalForm()));
 
         // Установка обработки закрытия
         primaryStage.setOnCloseRequest(this::handleExit);

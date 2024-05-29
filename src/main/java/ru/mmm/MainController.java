@@ -40,6 +40,8 @@ public class MainController {
     @FXML
     private Button invisibleButton;
 
+    @FXML
+    public ImageView sleepSign;
     /**
      * Показать текущую статистику чубрика.
      * @param health текущее значение здоровья
@@ -81,10 +83,17 @@ public class MainController {
     /** Выключить свет (сон). */
     @FXML
     private void handleLamp() {
+        String prevState = Chubrick.getState();
+        Chubrick.setState("sad");
+        app.loadChubrImage();
+        showImage();
         lampImage.setImage(new Image(getClass().getResource("/ru/mmm/interface/lamp_off.png").toExternalForm()));
         Timeline sleep = new Timeline(
                 new KeyFrame(Duration.seconds(3), event -> {
                     lampImage.setImage(new Image(getClass().getResource("/ru/mmm/interface/lamp_on.png").toExternalForm()));
+                    Chubrick.setState(prevState);
+                    app.loadChubrImage();
+                    hideImage();
                     Chubrick.Sleep();
                 })
         );
@@ -99,11 +108,23 @@ public class MainController {
         app.pressInvisibleButton();
     }
 
+    /** Демонстрация кнопки. */
     public void showButton() {
         invisibleButton.setVisible(true);
     }
 
+    /** Скрытие кнопки. */
     public void hideButton() {
         invisibleButton.setVisible(false);
+    }
+
+     /** Демонстрация изображения */
+    public void showImage() {
+        sleepSign.setVisible(true);
+    }
+
+    /** Скрытие изображения. */
+    public void hideImage() {
+        sleepSign.setVisible(false);
     }
 }
